@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+   background-color:  #0e1217;
+}
+:root{
+    --fontstyle1:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    --bgcolor:#a8b3cf;
+    --inputbgcolor:color-mix(in srgb,var(--bgcolor),transparent 91.5%);
+}
+.dailydev {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px
+}
+
+.dailydev>img {
+    width: 60px;
+    height: 50px;
+    padding-bottom: 3px;
+}
+
+.dailydev>p {
+    color: whitesmoke;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.dailydev>p>span {
+    font-size: 1.25rem;
+    color: grey;
+
+}
+.signup{
+    /* border: 2px red solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+.signup> .title{
+    color:white;
+    font-weight: 700;
+    font-family:var(--fontstyle1) ;
+    font-size: 1.7rem;
+}
+.emailinputdiv ,.nameinputdiv,.passinputdiv,.usernameinputdiv{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 1px #a8b3cf solid; */
+    height: 55px;
+    width: 28%;
+    border-radius: 20px;
+    padding: 5px 10px;
+    /* border-left:3px red solid; */
+    background-color: var(--inputbgcolor)
+    
+
+}
+/* .emailinputdiv:focus-within,.nameinputdiv:focus-within {
+    border-left: 3px solid rgb(89, 204, 89);
+  } */
+
+.emailinputdiv>label>i,.nameinputdiv>label>i,.passinputdiv>label>i,.usernameinputdiv>label>i {
+    font-size: 1.35rem;
+    color: #a8b3cf;
+    padding: 5px 10px;
+    /* padding-left:10px; */
+}
+
+.emailinputdiv>input,.nameinputdiv>input,.passinputdiv>input,.usernameinputdiv>input {
+    background: transparent;
+    border: 0px;
+    width: 80%;
+    outline: none;
+    color: white;
+    font-size: 1.05rem;
+
+}
+
+
+.emailinputdiv>input ::placeholder,.nameinputdiv>input ::placeholder,.passinputdiv>input ::placeholder,.usernameinputdiv>input ::placeholder {
+    color: #a8b3cf;
+    font-size: 1.2rem;
+}
