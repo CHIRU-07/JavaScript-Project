@@ -7,7 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+   
 </head>
 
 <body>
@@ -16,7 +18,8 @@
         <img src="../images/2023-css-logos-daily-dev-logo.png">
         <p>daily<span>.dev</span></p>
     </div>
-    <div class="signup">
+    <div class="content">
+      <div class="signup">
         <p class="title">Sign up</p>
         <div class="emailinputdiv">
           <label for="emailinput"><i class="fa-solid fa-envelope"></i></label>
@@ -34,16 +37,57 @@
         <label for="usernameinput"><i class="fa-solid fa-at"></i></label>
           <input id="usernameinput" placeholder="Username">
      </div>
-     <div class="expleveldiv">
-        <label for="explevel"><i class="fa-solid fa-code"></i><span>Experience Level </span></label>
+     <div class="selectdiv">
+        <label for="explevel"><i class="fa-solid fa-code"></i></label>
 
         <select name="Experience Level " id="explevel">
-            <option value="volvo">Aspiring Engineer </option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+            <option value="Experience level">Experience level </option>
+            <option value="Aspiring Engineer(&lt 1 Year)">Aspiring Engineer (&lt;1 Year) </option>
+            <option value="Entry-level(1Year)">Entry-level (1Year)</option>
+            <option value="Mid-level (2-3Years)">Mid-level (2-3Years)</option>
+            <option value="Experienced (4-5 Years)">Experienced (4-5 Years)</option>
+            <option value="Highly-Experienced (6-10 Years)">Highly-Experienced (6-10 Years)</option>
+            <option value="I've suffered enough (10+ Years)">I've suffered enough (10+ Years)</option>
+            <option value="I'm not an engineer">I'm not an engineer</option>
         </select>
      </div>
+     <div class="langdiv">
+      <label for="lang"><i class="fa-solid fa-language"></i></label>
+
+      <select name="Original Language" id="lang">
+          <option value="Original language">Original language </option>
+          <option value="English">English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="German">German</option>
+          <option value="French">French</option>
+          <option value="Italian">Italian</option>
+          <option value="Chinese(simplified)">Chinese(simplified)</option>
+          <option value="Portuguese(Brazil)">Portuguese(Brazil)</option>
+          <option value="Portuguese(Portugal)">Portuguese(Portugal)</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+      
+      </select>
+   </div>
+      <p class="terms">Your email will be used to send you product and community updates</p>
+      <div class="hrline"></div>
+      <div class="checkboxdiv">
+        <input type="checkbox" id="promoCheck">
+        <label for="promoCheck">I don’t want to receive updates and promotions via email</label>
+    </div>
+    <div class="hrline"></div>
+    <button class="signbtn" id="signbtn">Sign Up</button>
+    <footer>
+      <p>© 2025 Daily Dev Ltd.</p>
+      <p>Guidelines</p>
+      <p>Explore</p>
+      <p>Tags</p>
+      <p>Sources</p>
+      <p>Squads</p>
+      <p>Leaderboard</p>
+  </footer>
+      
+    </div>
     </div>
 
 
@@ -52,7 +96,7 @@
 
 
 
-    <script src="./signup.js"></script>
+    <script type="module" src="./signup.js"></script>
 </body>
 
 </html>

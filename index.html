@@ -9,6 +9,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="./landing/landing.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                 </div>
                 <div class="login">
                     <p>Already using daily.dev?</p>
-                    <span>Log in</span>
+                    <span id="indexlogin">Log in</span>
                 </div>
 
             </div>
@@ -32,11 +33,13 @@
                     <p class="site_description">We know how hard it is to be a developer. It doesn't have to be.
                         Personalized news feed, dev community and search, much better than what's out there. Maybe;)</p>
                    </div>
-                    <div class="emailinputdiv">
-                        <label for="emailinput"><i class="fa-solid fa-envelope"></i></label>
-                        <input id="emailinput" placeholder="Email">
-                    </div>
-                    <button class="freesignup">Sign up - free forever &rarr;</button>
+                  
+                        <div class="emailinputdiv">
+                            <label for="emailinput"><i class="fa-solid fa-envelope"></i></label>
+                            <input id="emailinput" type="email" placeholder="Email">
+                        </div>
+                        <button class="freesignup">Sign up - free forever &rarr;</button>
+                  
                     <div class="orsignup">
                         <div class="orsignup1"></div>
                         <p class="orsignup2">Or sign up with</p>
@@ -65,7 +68,8 @@
         </footer>
     </div>
 
-    <script src="./landing/landing.js"></script>
+    <script type="module" src="./landing/landing.js"></script>
+   
 </body>
 
 </html>
