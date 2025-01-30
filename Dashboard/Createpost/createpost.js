@@ -79,16 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-        
-
-
-
-
-
-
-
-
-
 //Thumbnails//
 const fileInput = document.getElementById("thumbnailimage");
 const preview = document.getElementById("thumbnailpreview");
