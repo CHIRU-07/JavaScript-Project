@@ -187,7 +187,9 @@ removeBtn.addEventListener("click", function () {
 });
 
 
-let newpostdata=document.getElementById("divbtnpost")
-newpost.addEventListener("click",()=>{
+
+
+let newpost_data=document.getElementById("divbtnpost")
+newpost_data.addEventListener("click",()=>{
 
 })

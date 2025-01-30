@@ -1,11 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="./profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
 </head>
+
 <body>
-    profile
+    <div class="header">
+        <div class="dailydev headerleft">
+            <img src="../../images/2023-css-logos-daily-dev-logo.png">
+            <p>daily<span>.dev</span></p>
+        </div>
+        <div class="header_right">
+            <div class="searchfunction">
+                <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+                <input id="search" type="text" placeholder="Search">
+            </div>
+            <div class="UNU">
+                <div class="upgrade">
+                    <i class="fa-regular fa-star"></i>
+                    <p class="uptext">Upgrade</p>
+                </div>
+                <div class="bellicon"><i class="fa-regular fa-bell"></i></div>
+                <div class="streakanduser">
+                    <div class="streak"><i class="fa-solid fa-fire"></i>
+                        <p class="streaktext">3</p>
+                    </div>
+                    <div class="user" id="user">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-button" id="userbtn">
+            <div class="about">
+                <div class="profilepic">
+                    <img
+                        src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTC6vBReh7p0IdW5F5rAwRBTmJNcDeJzUR21ZaKE1_1h1memFkYk6o2qG7lGHJArg5GUb0lK63F_opIZiY">
+
+                </div>
+                <div class="nameandusername">
+                    <p class="name">Chirudeep</p>
+                    <p class="username">@Chiru_7<span id="joindate">Joined January 2025</span></p>
+                </div>
+            </div>
+            <div class="profileandlogout">
+                <div class="profile" id="profile">
+                    <i class="fa-solid fa-id-card"></i>
+                    <p>Profile</p>
+                </div>
+                <div class="logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <p>Logout</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="main-container">
+        <div class="nav">
+            <p class="menu">Menu</p>
+            <div id="newpost" class="newpost">
+                <i class="fa-solid fa-plus"></i>
+                <p class="post" id="post">New post</p>
+            </div>
+            <div class="feedsection">
+                <div class="myfeed">
+                    <i class="fa-regular fa-user"></i>
+                    <p class="feedtext">My feed</p>
+                </div>
+                <div class="following">
+                    <i class="fa-solid fa-users"></i>
+                    <p class="feedtext">Following</p>
+                </div>
+                <div class="explore">
+                    <i class="fa-solid fa-fire"></i>
+                    <p class="feedtext">Explore</p>
+                </div>
+                <div class="history">
+                    <i class="fa-solid fa-eye"></i>
+                    <p class="feedtext">History</p>
+                </div>
+
+            </div>
+            <div class="bookmarks">
+                <p class="booktext">Bookmarks</p>
+                <div class="quicksaves">
+                    <i class="fa-regular fa-bookmark"></i>
+                    <p>Quick saves</p>
+                </div>
+                <div class="readlater">
+                    <i class="fa-regular fa-clock"></i>
+                    <p>Read it later</p>
+                </div>
+                <div class="newfolder">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>New folder</p>
+                </div>
+
+            </div>
+            <div class="Resources">
+                <p class="restext">Resources</p>
+                <div class="docs">
+                    <i class="fa-regular fa-file"></i>
+                    <p>Docs</p>
+                </div>
+                <div class="changelog">
+                    <i class="fa-solid fa-code"></i>
+                    <p>Changelog</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content">
+          <div class="contentleftdiv">
+            <div class="postsandliked">
+                <p tabindex="0" class="postscreated">Posts</p>
+                <p tabindex="0" class="postliked">Upvoted</p>
+            </div>
+              <div class="forpostingcontent" id="forpostingcontent"></div>
+            </div>
+
+            <div class="contentrightdiv">
+                <div class="profileandedit">
+                    <p class="prop">Profile</p>
+                    <p class="editprofile">Edit Profile</p>
+                </div>
+             <div class="aboutprofile">
+                        <div class="aboutprofilepic">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
+                        </div>
+                        <div class="nameandusernames">
+                            <p class="names">Chirudeep</p>
+                            <p class="usernames">@Chiru_7<span id="joindate">Joined January 2025</span></p>
+                        </div>
+                        <div id="addbio"><i class="fa-solid fa-plus"></i><p class="pbio">Add Bio</p></div>
+                        <div id="invite">
+                            <p>Invite via</p>
+                            <div id="socicons">
+                                <i id="wa" class="fa-brands fa-whatsapp"></i>
+                                <i  id="fb" class="fa-brands fa-facebook"></i>
+                                <i  id="x" class="fa-brands fa-x-twitter"></i>
+                            </div>
+                        </div>  
+                    </div>
+                
+         
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+    <script type="module" src="./profile.js"></script>
 </body>
+
 </html>
