@@ -42,8 +42,7 @@ body{
     padding:30px;
 }
 .signup{
-    /* border: 2px red solid; */
-    display: flex;
+   display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -51,6 +50,7 @@ body{
     width: 35%;
 
 }
+
 .signup> .title{
     color:white;
     font-weight: 700;
