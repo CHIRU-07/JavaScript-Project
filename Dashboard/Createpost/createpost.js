@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { getDatabase, ref,get,set,push } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIkpWec4hXak835yrgmnZ3orphKZy7tmk",
@@ -164,7 +165,7 @@ fileInputforpostimages.addEventListener("change", async function (event) {
                 previewImg.src = imgURL;
                 previewImg.style.display = "block";
                 removeBtn.style.display = "inline-block";
-                textarea.value += `\n${imgURL}`;
+                // textarea.value += `\n${imgURL}`;
                 removeBtn.setAttribute("data-imgurl", imgURL); // Store URL for removal
             } else {
                 console.error("Cloudinary upload failed:", data);
@@ -183,13 +184,148 @@ removeBtn.addEventListener("click", function () {
     fileInputforpostimages.value = "";
 
     // Remove the image URL from the textarea
-    textarea.value = textarea.value.replace(imgURL, "").trim();
+    // textarea.value = textarea.value.replace(imgURL, "").trim();
+});
+
+
+
+//for getting info of the logged in user
+onAuthStateChanged(author, async (user) => {
+  if (user) {
+    const userRef = ref(database, `Users/${user.uid}`);  // ✅ Using UID instead of name
+    try {
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        console.log("User Data:", userData);
+
+        // Update UI with fetched user data
+          document.getElementById("name").innerText = userData.name;
+            document.getElementById("username").innerText = userData.username;
+        } else {
+        console.log("No user data found in Realtime Database");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  } else {
+    console.log("No user is logged in");
+    window.location.href = "/login.html"; // Redirect to login if not authenticated
+  }
+});
+
+
+//To add data into the logged in user when he creates a post
+
+// Upload Post Function
+let newpost_data=document.getElementById("divbtnpost")
+
+newpost_data.addEventListener("click", async () => {
+  const postthumbnail = document.getElementById("thumbnailpreview").src
+  const posttitle = document.getElementById("pt").value.trim();
+  const postdescription = document.getElementById("postthoughts").value.trim()
+  const postpicture = document.getElementById("previewImg").src;
+
+  if (!postthumbnail || !posttitle || !postdescription || !postpicture) {
+   Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "All fields are required!",
+     });
+    return;
+  }
+
+  onAuthStateChanged(author, async (user) => {
+    if (user) {
+      const userId = user.uid;
+      const postRef = push(ref(database, `Users/${userId}/posts`)); // Unique post ID
+
+      try {
+        
+
+        // Store Post Data in Realtime Database
+        await set(postRef, {
+          title: posttitle,
+          description: postdescription,
+          postimageUrl: postpicture,
+          thumbnailUrl: postthumbnail,
+          
+        });
+        Swal.fire({
+          title: "Post uploaded successfully!",
+          icon: "success",
+          draggable: true
+        });
+        const imgURL = removeBtn.getAttribute("data-imgurl");
+        previewImg.style.display = "none";
+        previewImg.src = "";
+        removeBtn.style.display = "none";
+        fileInputforpostimages.value = "";
+        preview.src ="";
+        label.style.display = "block"; 
+        preview.style.display="none";
+        remove.style.display="none";
+        document.getElementById("postthoughts").value=""
+        posttitle=""
+
+      } catch (error) {
+        console.error("Error uploading post:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+          });
+        
+      }
+
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "User not logged in!",
+        });
+     
+    }
+  });
 });
 
 
 
 
-let newpost_data=document.getElementById("divbtnpost")
-newpost_data.addEventListener("click",()=>{
 
-})
+
+// To Retrieve and Display Posts
+// onAuthStateChanged(auth, async (user) => {
+//   if (user) {
+//     const userId = user.uid;
+//     const postsRef = ref(db, `Users/${userId}/posts`);
+
+//     try {
+//       const snapshot = await get(postsRef);
+//       if (snapshot.exists()) {
+//         const postsData = snapshot.val();
+//         let postsHTML = "";
+
+//         Object.keys(postsData).forEach((postId) => {
+//           const post = postsData[postId];
+//           postsHTML += `
+//             <div class="post">
+//               <img src="${post.thumbnail_url}" alt="Thumbnail">
+//               <h3>${post.title}</h3>
+//               <p>${post.description}</p>
+//               <a href="${post.image_url}" target="_blank">View Full Image</a>
+//             </div>
+//           `;
+//         });
+
+//         document.getElementById("postsContainer").innerHTML = postsHTML;
+//       } else {
+//         document.getElementById("postsContainer").innerHTML = "<p>No posts found.</p>";
+//       }
+//     } catch (error) {
+//       console.error("Error fetching posts:", error);
+//     }
+//   } else {
+//     console.log("User not logged in");
+//   }
+// });

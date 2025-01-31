@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { getDatabase, ref,get, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIkpWec4hXak835yrgmnZ3orphKZy7tmk",
@@ -77,6 +77,33 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
+
+//for getting info of the logged in user
+onAuthStateChanged(author, async (user) => {
+  if (user) {
+    const userRef = ref(database, `Users/${user.uid}`);  // ✅ Using UID instead of name
+    try {
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        console.log("User Data:", userData);
+
+        // Update UI with fetched user data
+        document.getElementById("name").innerText = userData.name;
+        document.getElementById("username").innerText = userData.username;
+        document.getElementById("names").innerText = userData.name;
+        document.getElementById("usernames").innerText = userData.username;
+} else {
+        console.log("No user data found in Realtime Database");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  } else {
+    console.log("No user is logged in");
+    window.location.href = "/login.html"; // Redirect to login if not authenticated
+  }
+});
 
 
 

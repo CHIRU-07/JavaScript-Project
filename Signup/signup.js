@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { getDatabase, ref, set} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIkpWec4hXak835yrgmnZ3orphKZy7tmk",
@@ -86,40 +86,46 @@ signbtn.addEventListener("click", async () => {
       });
     }
 
-    else {
-      await createUserWithEmailAndPassword(author, signupemailidval.value, signuppassval)
-  .then(() => {
-    return set(ref(database, `Users/${signupnameval}`), { 
-      name: signupnameval,
-      username: signupuserval, 
-      email: signupemailidval.value,
-      password: signuppassval,
-      experience_level: explevelval,
-      original_language: langval
-    });
-  })
-  .then(() => {
-    Swal.fire({
-      title: "Signed in successfully",
-      icon: "success",
-      draggable: true
-    }).then(() => {
-      document.getElementById("emailinput").value = "";
-      document.getElementById("nameinput").value = "";
-      document.getElementById("passinput").value = "";
-      document.getElementById("usernameinput").value = "";
-      document.getElementById("explevel").value = "";
-      document.getElementById("lang").value = "";
-      location.href = "../Login/login.html";
-    });
-  })
-  .catch((err) => {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: err.message 
-    });
-  });
+    else{
+      try {
+        const UserCredentials = await createUserWithEmailAndPassword(author, signupemailidval.value, signuppassval);
+        const user = UserCredentials.user;
+      
+        await set(ref(database, `Users/${user.uid}`), {  // ✅ Use UID instead of name
+          name: signupnameval,
+          uid: user.uid,  // ✅ Store user UID correctly
+          username: signupuserval,
+          email: signupemailidval.value,
+          experience_level: explevelval,
+          original_language: langval,
+          joined_on: new Date().toISOString()
+        });
+      
+        Swal.fire({
+          title: "Signed in successfully",
+          icon: "success",
+          draggable: true
+        }).then(() => {
+          // Clear input fields
+          document.getElementById("emailinput").value = "";
+          document.getElementById("nameinput").value = "";
+          document.getElementById("passinput").value = "";
+          document.getElementById("usernameinput").value = "";
+          document.getElementById("explevel").value = "";
+          document.getElementById("lang").value = "";
+      
+          // Redirect to login page
+          location.href = "../Login/login.html";
+        });
+      
+      } catch (err) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message
+        });
+      }
+      
     }
   }
 

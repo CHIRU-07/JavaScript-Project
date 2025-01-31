@@ -202,6 +202,8 @@ position: relative;
     border-radius: 22px;
     border: 2px solid var(--bordercolor);
     padding:6px 14px;
+    background-color: #0e1217;
+
   }
  .about{
     display: flex;
@@ -239,13 +241,20 @@ position: relative;
     color:var(--textcolor);
     font-size: 1.25rem;
 }
-.nameandusername > .username{
+.dateandusername > .username,.dateandusername > #joindate{
     color:var(--textcolor);
     font-size: 0.7rem;
+   
+}
+.dateandusername > #joindate{
+ padding-bottom: 17px;
+}
+.dateandusername{
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap:10px;
+    
 }
 .profileandlogout{
     display: flex;
