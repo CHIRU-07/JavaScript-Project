@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref, set} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getDatabase, ref, set,get} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIkpWec4hXak835yrgmnZ3orphKZy7tmk",
@@ -90,6 +90,15 @@ signbtn.addEventListener("click", async () => {
       try {
         const UserCredentials = await createUserWithEmailAndPassword(author, signupemailidval.value, signuppassval);
         const user = UserCredentials.user;
+        console.log(user)
+        function getFormattedDate() {
+          const date = new Date(); // Gets the current date
+          const day = String(date.getUTCDate()).padStart(2, '0');
+          const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+          const year = date.getUTCFullYear();
+      
+          return `${day}-${month}-${year}`;
+      }
       
         await set(ref(database, `Users/${user.uid}`), {  // ✅ Use UID instead of name
           name: signupnameval,
@@ -98,8 +107,11 @@ signbtn.addEventListener("click", async () => {
           email: signupemailidval.value,
           experience_level: explevelval,
           original_language: langval,
-          joined_on: new Date().toISOString()
+          joined_on: getFormattedDate(),
+          profileimg:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
         });
+
+       
       
         Swal.fire({
           title: "Signed in successfully",

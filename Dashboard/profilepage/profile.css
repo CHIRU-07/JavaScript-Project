@@ -359,6 +359,9 @@ width:100%;
     justify-content: center;
     gap:10px;
 }
+.myfeed:hover{
+    background: #3e3e3e;
+}
 .nav > .feedsection > .myfeed >i{
     font-size: 1.2rem;
     color: white;
@@ -476,7 +479,7 @@ width:100%;
     flex: 1;
     padding: 20px;
     overflow-y: auto; 
-    border:2px red solid;
+    /* border:2px red solid; */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -489,6 +492,7 @@ width:100%;
     width:55%;
     display: flex;
     flex-direction: column;
+    gap:20px;
 }
 .postsandliked{
     display: flex;
@@ -521,7 +525,124 @@ width:100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* border:2px red solid; */
+    /* padding:15px; */
+    width:100%;
+    /* border: var(--bordercolor2) solid 1px; */
+    
+
+    /* height:10vh; */
 }
+
+.mypost{
+    width:100%;
+    border:1px solid var(--bordercolor);
+    border-radius: 20px;
+    padding: 10px;
+
+
+}
+.viewpost1{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:10px;
+
+}
+.viewpost1 > img{
+    width:50px;
+    height:50px;
+    border-radius: 25%;
+}
+.viewpost1_names{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* border: 2px blue solid; */
+    height:50px;
+    width:40%;
+    gap:10px;
+}
+.viewpost1 > .viewpost1_names > .vp1_uname{
+    color:white;
+    font-size: 0.85rem;
+    margin-top:20px;
+    /* border: red 2px solid; */
+    margin: 0;  
+    line-height: 1;
+
+}
+.viewpost1 > .viewpost1_names > .vp1_name{
+    color:var(--textcolor);
+    font-size: 0.75rem;
+    /* border: yellow 2px solid; */
+    margin: 0;  
+    line-height: 1;
+}
+
+
+.viewpost2{
+    width:100%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding:5px;
+
+}
+.viewpost2 > img{
+    width:240px;
+    height:170px;
+    border-radius:30px;
+}
+.viewpost2 > .vp_title{
+    font-size: 1.25rem;
+    color:white;
+    width:50%;
+    text-transform: capitalize;
+
+}
+.viewpost3{
+    width:100%;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    padding:5px;
+    gap:10px;
+
+}
+.viewpost3 > .likeanddislike{
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    background-color:var(--inputbgcolor);
+    gap:20px;
+    width:15%;
+    border-radius: 10px;
+    padding:5px;
+}
+.likeanddislike > .likebtn{
+    border:transparent;
+    border-right: var(--bordercolor);
+}
+.likeanddislike > i{
+    font-size: 1.7rem;
+    color:var(--textcolor) ;
+}
+.likeanddislike > i:focus{
+    color:white;
+}
+#postcomments,#postbookmark,#postlink{
+    font-size: 1.5rem;
+    color:var(--textcolor) ;
+    background-color:var(--inputbgcolor);
+    padding:8px;
+    border-radius: 10px;
+
+
+}
+
+
 .contentrightdiv{
     width:26%;
     border: 2px red solid;

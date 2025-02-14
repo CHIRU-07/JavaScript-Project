@@ -32,6 +32,9 @@ onAuthStateChanged(author, async (user) => {
         // Update UI with fetched user data
         document.getElementById("name").innerText = userData.name;
             document.getElementById("username").innerText = userData.username;
+          document.getElementById("profileimg").src=userData.profileimg;
+          document.getElementById("joindate").textContent="Joined on"+" "+userData.joined_on;
+
         } else {
         console.log("No user data found in Realtime Database");
       }
@@ -43,10 +46,6 @@ onAuthStateChanged(author, async (user) => {
     window.location.href = "/login.html"; // Redirect to login if not authenticated
   }
 });
-
-
-
-
 
 
 
@@ -103,4 +102,76 @@ let newpost=document.getElementById("newpost")
 newpost.addEventListener("click",()=>{
     location.href="./Createpost/createpost.html"
 })
+
+
+let myfeed = document.getElementById("myfeed");
+
+myfeed.addEventListener("click", async () => {
+  dashboardcards()
+})
+
+
+async function dashboardcards(){
+  let divcontainer = document.getElementById("content");
+  // let modalCard=document
+  divcontainer.innerHTML=""
+  try {
+    const userRef = ref(database, `Users`);
+    const snapshot = await get(userRef);
+
+    if (snapshot.exists()) {
+      const userData = snapshot.val();
+      
+      Object.values(userData).forEach(singleuserdata => {
+        if (singleuserdata.posts) {
+          Object.values(singleuserdata.posts).forEach(singleuserpost => {
+            
+            let card = document.createElement("div");
+            card.setAttribute("class","dashboardcard")
+            card.style.width = "300px";
+            card.style.height = "500px";
+            card.innerHTML = `
+              <div class='picandtitle'>
+              <img src='${singleuserdata.profileimg || "default-profile.jpg"}' id='dcardprofilepic'> 
+              <p id='dcardtitle'>${singleuserpost.title || "Untitled Post"}</p></div>
+              <div class='cardhalf'>
+              <div class='cardtimeandimg'>
+                <p id='cardposttime'>${singleuserpost.created_on || "Unknown Date"}</p>
+                <img src='${singleuserpost.thumbnailUrl || "default-thumbnail.jpg"}' id='cardpostthumbnail'>
+              </div>
+              <div class='cardfooter'>
+                <div class='likeanddislike'>
+                  <div class='like'>
+                    <i class="fa-solid fa-heart" tabindex='0' id='likebtn'></i>
+                    <p id='likecount'>${singleuserpost.like || 0}</p>
+                  </div>
+                  <i class='fa-solid fa-heart-crack' id='dislikebtn'></i>
+                </div>
+                <div class='footericons'>
+                <i class='fa-regular fa-message' id='postcomments'></i>
+                <i class='fa-regular fa-bookmark' id='postbookmark'></i>
+                <i class='fa-solid fa-link' id='postlink'></i></div></div>
+              </div>
+            `;
+            card.addEventListener("click",()=>{
+             let modalCard=new bootstrap.Modal(document.getElementById("exampleModal"));
+             modalCard.show()
+            })
+            divcontainer.append(card);
+          });
+        }
+      });
+    } else {
+      console.log("No user data found in Realtime Database");
+    }
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+  }
+
+}
+
+dashboardcards()
+
+
+
 

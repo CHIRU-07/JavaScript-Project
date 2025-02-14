@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getDatabase, ref, set,get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAIkpWec4hXak835yrgmnZ3orphKZy7tmk",
@@ -62,6 +62,23 @@ loginbtn.addEventListener("click", async () => {
 
         else {
             try {
+
+                // const data= await get(ref(database, `Users`), {
+                //     name: signupnameval,
+                //     uid: user.uid,  
+                //     username: signupuserval,
+                //     email: signupemailidval.value,
+                //     experience_level: explevelval,
+                //     original_language: langval,
+                //     joined_on: getFormattedDate(),
+                //   });
+                
+                //   console.log(data)
+
+                // if(data){
+                //     return console.log(data.val())
+                // }
+
                 await signInWithEmailAndPassword(author, loginemailval, loginpassval).then(() => {
                     Swal.fire({
                         title: "Logged in successfully",

@@ -201,7 +201,10 @@ onAuthStateChanged(author, async (user) => {
 
         // Update UI with fetched user data
           document.getElementById("name").innerText = userData.name;
-            document.getElementById("username").innerText = userData.username;
+          document.getElementById("username").innerText = userData.username;
+          document.getElementById("profileimg").src=userData.profileimg;
+          document.getElementById("joindate").textContent="Joined on"+" "+userData.joined_on;
+          
         } else {
         console.log("No user data found in Realtime Database");
       }
@@ -241,14 +244,24 @@ newpost_data.addEventListener("click", async () => {
       const postRef = push(ref(database, `Users/${userId}/posts`)); // Unique post ID
 
       try {
+        function getFormattedDate() {
+          const date = new Date(); // Gets the current date
+          const day = String(date.getUTCDate()).padStart(2, '0');
+          const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+          const year = date.getUTCFullYear();
+      
+          return `${day}-${month}-${year}`;
+        }
         
-
         // Store Post Data in Realtime Database
         await set(postRef, {
           title: posttitle,
           description: postdescription,
           postimageUrl: postpicture,
           thumbnailUrl: postthumbnail,
+          like:0,
+          comments:"",
+          created_on: getFormattedDate(),
           
         });
         Swal.fire({
@@ -257,16 +270,21 @@ newpost_data.addEventListener("click", async () => {
           draggable: true
         });
         const imgURL = removeBtn.getAttribute("data-imgurl");
-        previewImg.style.display = "none";
-        previewImg.src = "";
         removeBtn.style.display = "none";
         fileInputforpostimages.value = "";
         preview.src ="";
         label.style.display = "block"; 
         preview.style.display="none";
         remove.style.display="none";
-        document.getElementById("postthoughts").value=""
-        posttitle=""
+        document.getElementById("postthoughts").value="";
+        document.getElementById("pt").value = "";
+        document.getElementById("previewImg").style.display = "none";
+        document.getElementById("previewImg").src = "";  
+        document.getElementById("removeImg").style.display = "none"; // ✅ Hide remove button
+        document.getElementById("pimg").value = "";  
+        document.getElementById("thumbnailpreview").src = "";
+        document.getElementById("thumbnailimage").value = "";
+        document.getElementById("thumbnailimagelabel").style.display = "block";
 
       } catch (error) {
         console.error("Error uploading post:", error);
@@ -290,7 +308,10 @@ newpost_data.addEventListener("click", async () => {
 });
 
 
-
+let feedbutton=document.getElementById("feedsection")
+feedbutton.addEventListener("click",()=>{
+  location.href="../dashboard.html"
+})
 
 
 
