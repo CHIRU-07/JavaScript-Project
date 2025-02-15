@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref,get, set,push } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { getAuth,onAuthStateChanged ,signOut} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { getDatabase, ref,get} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIkpWec4hXak835yrgmnZ3orphKZy7tmk",
@@ -15,8 +15,32 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const author = getAuth(app);
-export const database = getDatabase(app);
+const author = getAuth(app);
+ const database = getDatabase(app);
+
+
+let logoutbtn=document.getElementById("logout")
+logoutbtn.addEventListener("click", () => {
+  Swal.fire({
+    title: "User signed out successfully",
+    icon: "success",
+    draggable: true
+  }).then(() => {
+    signOut(author) 
+      .then(() => {
+        console.log(window.location.href);
+        window.location.href = "/Login/login.html"; 
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  });
+});
+
+    
+      
+
+
 
 
 //for getting info of the logged in user
@@ -30,8 +54,8 @@ onAuthStateChanged(author, async (user) => {
         console.log("User Data:", userData);
 
         // Update UI with fetched user data
-        document.getElementById("name").innerText = userData.name;
-            document.getElementById("username").innerText = userData.username;
+          document.getElementById("name").innerText = userData.name;
+          document.getElementById("username").innerText = userData.username;
           document.getElementById("profileimg").src=userData.profileimg;
           document.getElementById("joindate").textContent="Joined on"+" "+userData.joined_on;
 
@@ -155,6 +179,24 @@ async function dashboardcards(){
             `;
             card.addEventListener("click",()=>{
              let modalCard=new bootstrap.Modal(document.getElementById("exampleModal"));
+             let modaltitle=document.getElementById("modaltitle")
+             let modaldesc=document.getElementById("modaldesc")
+             let modaltime=document.getElementById("modaltime")
+             let modalimage=document.getElementById("modalimage")
+             let modallikecount=document.getElementById("modallikecount")
+             let modalcommcount=document.getElementById("modalcommcount")
+             console.log("Likes Count:", singleuserpost.like);
+
+
+             modaltitle.textContent=`${singleuserpost.title}`
+             modaldesc.textContent=`${singleuserpost.description}`
+             modaltime.textContent=`${singleuserpost.created_on}`
+             modalimage.src=`${singleuserpost.postimageUrl}`
+             modallikecount.textContent=`${singleuserpost.like}`+" "+"likes"
+            
+
+             modalcommcount.textContent=`${singleuserpost.comments}`+0+" "+"Comments"
+
              modalCard.show()
             })
             divcontainer.append(card);

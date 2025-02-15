@@ -190,7 +190,7 @@
 
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { getAuth,onAuthStateChanged ,signOut} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 // Firebase Configuration
@@ -390,3 +390,21 @@ let feedbutton=document.getElementById("myfeed")
 feedbutton.addEventListener("click",()=>{
   location.href="../dashboard.html"
 })
+
+let logoutbtn=document.getElementById("logout")
+logoutbtn.addEventListener("click", () => {
+  Swal.fire({
+    title: "User signed out successfully",
+    icon: "success",
+    draggable: true
+  }).then(() => {
+    signOut(author) 
+      .then(() => {
+        console.log(window.location.href);
+        window.location.href = "../../Login/login.html"; 
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  });
+});

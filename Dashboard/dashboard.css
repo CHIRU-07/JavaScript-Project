@@ -291,7 +291,7 @@ cursor: pointer;
     cursor: pointer; 
 }
 .nav{
-    width:15vw !important;
+    width:17vw !important;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -313,7 +313,7 @@ cursor: pointer;
     font-weight: 700;
  display: flex;
  align-items: center;
-justify-content: flex-start;
+justify-content: flex-start !important;
 /* border: red 2px solid;*/
 width:100%;
     
@@ -326,9 +326,9 @@ width:100%;
     text-align: center;
     background-color: white;
     border-radius: 13px;
-    width:100%;
+    width:100% !important;
     gap: 7px;
-    height:37px;
+    height:37px !important;
 }
 
 #newpost > i{
@@ -344,10 +344,10 @@ width:100%;
 .nav > .feedsection{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width:100%;
-    padding: 10px;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    width:100% !important;
+    padding-top: 10px !important;
     /* border: 2px red solid; */
 
     
@@ -492,137 +492,13 @@ width:100%;
 
 
 }
-/* .dashboardcard{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    width:370px;
-    max-height:380px;
-    border: 1px var(--bordercolor2) solid ;
-    background-color: var(--inputbgcolor);
-    padding:15px;
-    border-radius: 20px;
-    gap:10px;
-}
-.picandtitle{
-    display: flex;
-    align-items:flex-start;
-    justify-content: center;
-    flex-direction: column;
-    width:100%;
-    gap:10px;
-   
-    height:30%;
-
-}
-.picandtitle > #dcardprofilepic{
-        width:30px;
-        height:30px;
-        border-radius: 50%;
-        
-
-}
-#dcardtitle{
-    width:100%;
-    color:white;
-    font-size: 1.2rem;
-}
-.cardhalf{
-    display: flex;
-    align-items:flex-start;
-    justify-content: center;
-    flex-direction: column;
-    width:100%;
-    height:60%;
- 
-    gap:15px;
-}
-.cardtimeandimg{
-    display: flex;
-    align-items:flex-start;
-    justify-content: center;
-    flex-direction: column;
-    width:100%;
-    border: 2px red solid;
-    height:40%;
-    gap:5px;
-}
-.cardtimeandimg > #cardposttime{
-    color:white;
-    font-size: 0.95rem;
-    padding: 0;
-    margin:0;
-}
-
-.cardtimeandimg > #cardpostthumbnail{
-    width:100%;
-  
-    max-height:100%;
-    border-radius: 20px;
-    object-fit: cover;
-}
-.cardfooter{
-    display: flex;
-    align-items:center;
-    justify-content: flex-start;
-    width:100%;
-    gap:10px;
-
-}
-.likeanddislike{
-    display: flex;
-    align-items:center;
-    justify-content: space-around;
-    width:40%;
-    
-    background-color:#52586672;
-    height:35px;
-    border-radius: 16px;
-}
-.like{
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    gap:10px;
-  
-}
-.like > i{
-    color:white;
-    font-size: 1.4rem;
-}
-.like > p{
-    margin-top:12px;
-    color:white;
-    font-size: 1.1rem;
-    
-}
-.like + i{
-    color:white;
-    font-size: 1.4rem;
-}
-.footericons{
-    display: flex;
-    align-items:center;
-    justify-content: space-around;
-    gap:10px;
-}
-.footericons >i{
-    color:white;
-    font-size: 1.2rem;
-    background-color:#52586672;
-    border-radius: 16px;
-    padding:10px;
-
-
-} */
 .dashboardcard {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    width: 350px;
-    max-height: 390px;
+    width: 380px;
+    max-height: 420px;
     border: 1px solid #3A3F44; 
     background-color:#23272A;
     padding: 12px;
@@ -639,6 +515,8 @@ width:100%;
     width: 100%;
     gap: 10px;
     height: auto;
+    height: 40%;
+
     /* border:1px blue solid; */
 }
 
@@ -651,13 +529,14 @@ width:100%;
 
 #dcardtitle {
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    max-width: 75%;
-    /* white-space: nowrap;
-    overflow: hidden; */
-    /* text-overflow: ellipsis; */
-    height:15px;
+    width: 100%;
+    /* border: 2px red solid;S */
+    height:25px;
+    height:90%;
+    margin:0;
+
 }
 
 .cardhalf {
@@ -667,7 +546,7 @@ width:100%;
     flex-direction: column;
     width: 100%;
     height: 80%;
-    gap: 10px;
+    gap: 0px;
     /* border:2px green solid; */
 }
 
@@ -724,19 +603,23 @@ width:100%;
 }
 
 .like > i {
-    color: white;
+    color: rgba(255, 255, 255, 0.595);
     font-size: 1.25rem;
     cursor: pointer;
+}
+.like > i:hover{
+    color:rgba(255, 0, 0, 0.611);
 }
 
 .like > p {
     color: white;
     font-size: 1.05rem;
     margin: 0;
+    margin-bottom: 5px;
 }
 
 .like + i {
-    color: white;
+    color: rgba(255, 255, 255, 0.595);
     font-size: 1.25rem;
     cursor: pointer;
 }
@@ -749,7 +632,7 @@ width:100%;
 }
 
 .footericons > i {
-    color: white;
+    color: rgba(255, 255, 255, 0.568);
     font-size: 1.15rem;
     background-color: rgba(82, 88, 102, 0.6);
     border-radius: 12px;
@@ -760,4 +643,120 @@ width:100%;
 
 .footericons > i:hover {
     background-color: rgba(82, 88, 102, 0.9);
+}
+
+#modal-dialog{
+    /* border:2px red solid; */
+    /* height:502px; */
+    height:auto;
+    border-radius: 20px;
+}
+#modal-content{
+    /* border:2px blue solid; */
+    /* height:500px; */
+    height:auto;
+    border-radius: 25px;
+    background-color:#23272A !important;
+}
+#modal-body{
+    /* border:2px green solid; */
+}
+#modal-footer{
+    border-top:0;
+    height:auto;
+    padding:0px 15px 15px 0px;
+}
+.modalcard{
+    /* background-color: red; */
+}
+#modaltitle{
+    color:white;
+    /* height:70px; */
+    font-size: 1.8rem;
+    /* border:2px green solid; */
+
+}
+#modaldesc{
+    color:var(--textcolor);
+    /* border:2px green solid; */
+    height:80px;
+    margin:0px;
+}
+#modaltime{
+    color:lightgrey;
+    font-size: 0.85rem;
+    margin:0px;
+    
+
+}
+#modalimage{
+    width:100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+#countandinter{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* border: 2px red solid; */
+    
+}
+#modalcount{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* border: 2px red solid; */
+    width:100%;
+
+
+}
+#modalcount >p{
+    color:white;
+    padding:10px;
+    margin:0px;
+}
+.interactionbtns{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap:5px;
+    border: 2px var(--bordercolor) solid;
+    width:100%;
+    border-radius: 25px;
+    padding-right: 15px;
+    
+}
+.interactionbtns > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+    margin-right: 11px;
+}
+.interactionbtns > div >i{
+    font-size: 1.3rem;
+    color: var(--textcolor);
+}
+.interactionbtns > div >p{
+    margin-top: 12px;
+    font-size: 1rem;
+    color: var(--textcolor);
+}
+#modalLD{
+    border:2px var(--bordercolor) solid;
+    border-left: 0px;
+    border-radius: 20px;
+    width:30%;
+    padding: 18px 17px;
+    display: flex;
+    justify-content: space-around;
+    
+    
+}
+#modalLD > i{
+    font-size: 1.45rem;
+    padding: 0px 10px;
+    color: var(--textcolor);
 }
