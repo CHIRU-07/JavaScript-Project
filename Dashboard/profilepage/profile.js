@@ -398,7 +398,7 @@ logoutbtn.addEventListener("click", () => {
     icon: "success",
     draggable: true
   }).then(() => {
-    signOut(author) 
+    signOut(auth) 
       .then(() => {
         console.log(window.location.href);
         window.location.href = "../../Login/login.html"; 

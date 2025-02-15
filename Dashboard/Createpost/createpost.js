@@ -325,7 +325,7 @@ logoutbtn.addEventListener("click", () => {
     signOut(author) 
       .then(() => {
         console.log(window.location.href);
-        window.location.href = "../../Login/login.js"; 
+        window.location.href = "../../Login/login.html"; 
       })
       .catch((error) => {
         console.error("Error signing out:", error);
