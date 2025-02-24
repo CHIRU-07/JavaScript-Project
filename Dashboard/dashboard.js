@@ -46,7 +46,8 @@ logoutbtn.addEventListener("click", () => {
 //for getting info of the logged in user
 onAuthStateChanged(author, async (user) => {
   if (user) {
-    const userRef = ref(database, `Users/${user.uid}`);  // ✅ Using UID instead of name
+    const userRef = ref(database, `Users/${user.uid}`);  
+    // console.log(userRef)
     try {
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
@@ -129,14 +130,13 @@ newpost.addEventListener("click",()=>{
 
 
 let myfeed = document.getElementById("myfeed");
-
 myfeed.addEventListener("click", async () => {
   dashboardcards()
 })
 
 
 async function dashboardcards(){
-  let divcontainer = document.getElementById("content");
+ let divcontainer = document.getElementById("content");
   // let modalCard=document
   divcontainer.innerHTML=""
   try {
@@ -149,7 +149,7 @@ async function dashboardcards(){
       Object.values(userData).forEach(singleuserdata => {
         if (singleuserdata.posts) {
           Object.values(singleuserdata.posts).forEach(singleuserpost => {
-            
+            console.log(singleuserdata)
             let card = document.createElement("div");
             card.setAttribute("class","dashboardcard")
             card.style.width = "300px";
@@ -177,6 +177,21 @@ async function dashboardcards(){
                 <i class='fa-solid fa-link' id='postlink'></i></div></div>
               </div>
             `;
+            //  const savebookmark=document.getElementById("postbookmark")
+            //  savebookmark.addEventListener("click",async (e)=>{
+            //          e.stopPropagation()
+            //          const userId = user.uid;
+            //          console.log("bookmark clicked")
+            //          const historyRef = push(ref(database, `Users/${userId}/history`)); // Unique history ID
+            //          await set(historyRef, {
+            //           posttitle:singleuserpost.title,
+            //           postimageUrl: singleuserpost.postimageUrl,
+            //           like: singleuserpost.like,
+            //           created_on: getFormattedDate(),
+                      
+            //   })
+            // })
+
             card.addEventListener("click",()=>{
              let modalCard=new bootstrap.Modal(document.getElementById("exampleModal"));
              let modaltitle=document.getElementById("modaltitle")
@@ -193,11 +208,8 @@ async function dashboardcards(){
              modaltime.textContent=`${singleuserpost.created_on}`
              modalimage.src=`${singleuserpost.postimageUrl}`
              modallikecount.textContent=`${singleuserpost.like}`+" "+"likes"
-            
-
              modalcommcount.textContent=`${singleuserpost.comments}`+0+" "+"Comments"
-
-             modalCard.show()
+              modalCard.show()
             })
             divcontainer.append(card);
           });

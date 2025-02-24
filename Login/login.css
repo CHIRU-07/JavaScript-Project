@@ -18,12 +18,13 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 5px
+    gap: 5px;
+    padding:20px 30px;
 }
 
 .dailydev>img {
-    width: 60px;
-    height: 50px;
+    width: 38px;
+    height: 48px;
     padding-bottom: 3px;
 }
 

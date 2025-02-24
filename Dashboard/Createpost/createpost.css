@@ -358,6 +358,9 @@ width:100%;
     align-items: center;
     justify-content: center;
     gap:10px;
+    cursor: pointer;
+    padding:0px 15px;
+    border-radius: 15px;
 }
 .myfeed:hover{
     background: #3e3e3e;

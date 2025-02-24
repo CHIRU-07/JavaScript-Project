@@ -290,15 +290,18 @@ cursor: pointer;
     z-index: 9999; 
     cursor: pointer; 
 }
+
 .nav{
     width:17vw !important;
     height: 100vh;
+    height:auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     border-right: 1px var(--bordercolor) solid;
+    border-bottom: 1px var(--bordercolor) solid;
     padding:10px !important;
     position: sticky;
     top:0;
@@ -307,7 +310,6 @@ cursor: pointer;
     /* overflow-y: auto;
     overflow-x: hidden;  */
 }
-
 .nav > .menu{
     color:var(--bgcolor);
     font-weight: 700;
@@ -479,16 +481,20 @@ width:100%;
     display: flex; /* Ensures nav and content are side by side */
     /* height: calc(100vh - 65px); Adjust height to fit below header */
     /* height:120vh; */
+    /* border:2px blue solid; */
+    /* width:99.5vw; */
 }
 
 .content{
     display: flex;
     align-items: flex-start;
+    padding:25px;
     padding-top:50px;
     justify-content: center;
-    gap:30px;
+    gap:50px;
     width:100%;
     flex-wrap: wrap;
+    /* border:red 2px solid; */
 
 
 }

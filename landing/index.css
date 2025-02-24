@@ -60,20 +60,24 @@ header {
 }
 
 .dailydev>img {
-    width: 60px;
-    height: 50px;
-    padding-bottom: 5px;
+    width: 38px;
+    height: 48px;
+   /* margin-bottom: 20px; */
 }
 
 .dailydev>p {
     color: whitesmoke;
     font-size: 1.8rem;
     letter-spacing: 1px;
+   margin-top: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .dailydev>p>span {
     font-size: 1.25rem;
     color: grey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 
 }
 
